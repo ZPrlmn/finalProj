@@ -17,7 +17,7 @@ function SplashScreen({navigation}) {
         style={{width: '100%', height:'100%'}}
       />
         <Text style={{
-          fontSize: 100, 
+          fontSize: 50, 
           backgroundColor: 'rgba(100,100,100,0.7)', 
           position: 'absolute', 
           top:20, left:20,
