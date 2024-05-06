@@ -3,8 +3,9 @@ import { Text, View, Button, TextInput, Alert, ActivityIndicator } from 'react-n
 
 const LoadingScreen = () => {
   return (
-    <View>
+    <View style={{backgroundColor: 'black'}}>
         <ActivityIndicator size="large" color="brown" />
+        
     </View>
   )
 }
