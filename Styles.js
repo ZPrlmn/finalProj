@@ -8,6 +8,10 @@ const Styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    button:{
+      margin:20,
+      padding:20
+    }
 });
 
 export default Styles
