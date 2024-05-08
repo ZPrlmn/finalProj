@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, View, Button, TextInput, Alert } from 'react-native'
+import { Text, View, Button, TextInput, Alert, TouchableHighlight } from 'react-native'
 import Styles from '../Styles'
 
 function Login({ navigation }) {
@@ -8,7 +8,7 @@ function Login({ navigation }) {
 
   
   const Accounts = [
-    { id: 1, userName: 'admin', password: 'admin' }
+    { id: 1, userName: 'Admin', password: 'admin' }
   ]
 
   function loginFunction() {
@@ -22,12 +22,20 @@ function Login({ navigation }) {
 
   return (
     <View style={Styles.container}>
-      <Text>Login</Text>
-      <Text>Name</Text>
-      <TextInput style={{ borderWidth: 1, borderColor: 'black', width: 200, paddingHorizontal: 5 }} value={userName} onChangeText={setUserName} />
-      <Text>Password</Text>
-      <TextInput style={{ borderWidth: 1, borderColor: 'black', width: 200, paddingHorizontal: 5 }} value={password} onChangeText={setPassword} secureTextEntry={true} />
-      <Button title="Login" onPress={loginFunction} />
+      <View style={Styles.card}>
+        <View style={Styles.header}>
+          <Text style={Styles.headerTitle}>Login</Text>
+        </View>
+        <View style={Styles.cardBody}>
+          <Text style={{fontSize: 18}}>Name</Text>
+          <TextInput  style={Styles.textInput} value={userName} onChangeText={setUserName} placeholder='Name' />
+          <Text style={{fontSize: 18}}>Password</Text>
+          <TextInput style={Styles.textInput} value={password} onChangeText={setPassword} secureTextEntry={true} placeholder='Password' />
+          <TouchableHighlight style={{backgroundColor:'#2196F3', padding: 10, borderRadius: 10}} onPress={loginFunction}>
+            <Text style={{color: 'white', fontSize: 18}}>Login</Text>
+          </TouchableHighlight>  
+        </View>
+      </View>
     </View>
   )
 }

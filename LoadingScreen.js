@@ -1,11 +1,11 @@
 import React from 'react'
 import { Text, View, Button, TextInput, Alert, ActivityIndicator } from 'react-native'
+import Styles from './Styles'
 
 const LoadingScreen = () => {
   return (
-    <View style={{backgroundColor: 'black'}}>
-        <ActivityIndicator size="large" color="brown" />
-        
+    <View style={Styles.container}>
+        <ActivityIndicator size="large" color="gray" />
     </View>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View, Button, TouchableHighlight } from 'react-native'
 import Styles from '../Styles'
 import LoadingScreen from '../LoadingScreen'
 
@@ -26,13 +26,28 @@ function Home({navigation}) {
 
   return (
     <View style={Styles.container}>
-        <Text>Home</Text>
+        
         {isLoading ? <LoadingScreen /> :
         
-        <>  
-          <Button style={Styles.button} title="Trivia Game"/>
-          <Button style={Styles.button} title="4 Pics 1 Word"/>
-          <Button style={Styles.button} title="Logout" onPress={handleLogout}/>
+        <>
+
+          <TouchableHighlight style={[{position: 'absolute', top: 30, right:20, backgroundColor: 'red', padding: 10, borderRadius: 10}]} onPress={handleLogout}>
+            <Text style={{color:'white'}}>Log out</Text>
+          </TouchableHighlight>
+
+          <View style={Styles.card}>
+            <View style={Styles.header}>
+              <Text style={Styles.headerTitle}>Home</Text>
+            </View>
+            <View style={Styles.cardBody}>
+              <TouchableHighlight style={Styles.button}>
+                <Text style={Styles.buttonText}>Trivia Game</Text>
+              </TouchableHighlight>  
+              <TouchableHighlight style={Styles.button}>
+                <Text style={Styles.buttonText}>4 Pics 1 Word</Text>
+              </TouchableHighlight>  
+            </View>
+          </View>
         </>
         
         }
