@@ -1,24 +1,44 @@
-import React, { useState } from 'react'
-import { Text, View, Button, TextInput, Alert, TouchableHighlight } from 'react-native'
-import Styles from '../Styles'
+import React, { useEffect, useState } from 'react'
+import { Text, View, Button, TextInput, Alert, TouchableOpacity } from 'react-native'
+import Styles from '../Styles/Styles'
+  import { Audio } from 'expo-av';
 
 function Login({ navigation }) {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
+  const [sound, setSound] = useState()
+  const [inavlid, setInvalid] = useState(false)
+
+
+  async function playSound(){
+    const { sound } = await Audio.Sound.createAsync( require('../sounds/buttonClick.mp3'))
+    setSound(sound);
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound ? () => {
+      sound.unloadAsync();
+    } : undefined
+  }, [sound]);
 
   
   const Accounts = [
-    { id: 1, userName: 'Admin', password: 'admin' }
+    { id: 1, userName: '', password: '' }
   ]
 
   function loginFunction() {
-    const findUser = Accounts.find(item => item.userName === userName && item.password === password)
+    playSound();
+    const findUser = Accounts.find(item => item.userName === userName && item.password === password);
     if (findUser) {
-      navigation.navigate('Home')
-    } else {
-      Alert.alert("Inavlid UserName/Password")
+      navigation.navigate('Home');
+      setInvalid(false)
+    }
+    else {
+      setInvalid(true)
     }
   }
+  
 
   return (
     <View style={Styles.container}>
@@ -31,9 +51,10 @@ function Login({ navigation }) {
           <TextInput  style={Styles.textInput} value={userName} onChangeText={setUserName} placeholder='Name' />
           <Text style={{fontSize: 18}}>Password</Text>
           <TextInput style={Styles.textInput} value={password} onChangeText={setPassword} secureTextEntry={true} placeholder='Password' />
-          <TouchableHighlight style={{backgroundColor:'#2196F3', padding: 10, borderRadius: 10}} onPress={loginFunction}>
+          {inavlid ? <Text style={{color:'red'}}>Invalid Input</Text>: null}
+          <TouchableOpacity style={{backgroundColor:'#2196F3', padding: 10, borderRadius: 10}} onPress={loginFunction}>
             <Text style={{color: 'white', fontSize: 18}}>Login</Text>
-          </TouchableHighlight>  
+          </TouchableOpacity>  
         </View>
       </View>
     </View>

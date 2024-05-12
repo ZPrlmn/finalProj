@@ -16,6 +16,10 @@ const Styles = StyleSheet.create({
       width: 150,
       alignItems: 'center'
     },
+    buttonText:{
+      color: 'black',
+      fontSize: 20
+    },
     card:{
       backgroundColor: 'lightblue',
       borderRadius: 20,
@@ -24,12 +28,13 @@ const Styles = StyleSheet.create({
       width: 230,
       
     },
-    buttonText:{
-      color: 'black',
-      fontSize: 20
-    },
-    header:{borderBottomWidth: 2, padding: 10, borderColor: '#007AFF'},
-    headerTitle:{textAlign: 'center', fontSize: 30},
+    header:{
+      borderBottomWidth: 2, 
+      padding: 10, 
+      borderColor: '#007AFF'},
+    headerTitle:{
+      textAlign: 'center', 
+      fontSize: 30},
     cardBody:{
       alignItems: 'center',
       paddingVertical: 10
