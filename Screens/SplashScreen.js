@@ -1,26 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { ImageBackground, Text, View } from 'react-native'
 import Styles from '../Styles/Styles'
-import { Audio } from 'expo-av'
 
 function SplashScreen({navigation}) {
-  const [sound, setSound] = useState()
-
-  async function playSound(){
-    const { sound } = await Audio.Sound.createAsync(require('../sounds/splashScreen.wav'))
-    setSound(sound)
-
-    await sound.playAsync()
-  }
-
-  useEffect(() => {
-    playSound()
-
-    return sound ? () => {
-      sound.unloadAsync();
-    }
-    : undefined
-  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {

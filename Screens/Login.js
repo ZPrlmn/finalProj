@@ -1,34 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Text, View, Button, TextInput, Alert, TouchableOpacity } from 'react-native'
 import Styles from '../Styles/Styles'
-  import { Audio } from 'expo-av';
 
 function Login({ navigation }) {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
-  const [sound, setSound] = useState()
   const [inavlid, setInvalid] = useState(false)
 
 
-  async function playSound(){
-    const { sound } = await Audio.Sound.createAsync( require('../sounds/buttonClick.mp3'))
-    setSound(sound);
-    await sound.playAsync();
-  }
-
-  useEffect(() => {
-    return sound ? () => {
-      sound.unloadAsync();
-    } : undefined
-  }, [sound]);
-
   
   const Accounts = [
-    { id: 1, userName: '', password: '' }
+    { id: 1, userName: 'Admin', password: 'admin' }
   ]
 
   function loginFunction() {
-    playSound();
     const findUser = Accounts.find(item => item.userName === userName && item.password === password);
     if (findUser) {
       navigation.navigate('Home');

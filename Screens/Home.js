@@ -2,48 +2,28 @@ import React, { useEffect, useState } from 'react'
 import { Text, View, Button, TouchableOpacity, StatusBar } from 'react-native'
 import Styles from '../Styles/Styles'
 import LoadingScreen from '../LoadingScreen'
-import { Audio } from 'expo-av';
-import { StackActions } from '@react-navigation/native';
 
 
 function Home({navigation}) {
   const [isLoading, setIsLoading] = useState(true)
 
-  const [sound, setSound] = useState()
-
-
-  async function playSound(){
-    const { sound } = await Audio.Sound.createAsync( require('../sounds/buttonClick.mp3'))
-    setSound(sound);
-    await sound.playAsync();
-  }
-
-  useEffect(() => {
-    return sound ? () => {
-      sound.unloadAsync();
-    } : undefined
-  }, [sound]);
-
   const handleLogout = () => {
-    playSound()
     navigation.navigate('Login')
   }
 
   const trivia = () => {
-        playSound()
     setIsLoading(true)
     setTimeout(() => {
       setIsLoading(false)
-      navigation.dispatch(StackActions.replace('Trivia'));
+      navigation.navigate('Trivia');
     }, 2000);
   }
  
   const fourPics = () => {
-    playSound()
     setIsLoading(true)
     setTimeout(() => {
       setIsLoading(false)
-      navigation.dispatch(StackActions.replace('FourPics'));
+      navigation.navigate('FourPics');
     }, 2000);
   }
 
@@ -53,22 +33,16 @@ function Home({navigation}) {
       setIsLoading(false)
     }, 2000)
   }
-
   useEffect(() => {
     fetchData()
   }, [])
-
   return (
-    <View style={Styles.container}>
-        
-        {isLoading ? <LoadingScreen /> :
-        
+    <View style={Styles.container}>        
+        {isLoading ? <LoadingScreen /> :        
         <>
-
           <TouchableOpacity style={[{position: 'absolute', top: 30, right:20, backgroundColor: 'red', padding: 10, borderRadius: 10}]} onPress={handleLogout}>
             <Text style={{color:'white'}}>Log out</Text>
           </TouchableOpacity>
-
           <View style={Styles.card}>
             <View style={Styles.header}>
               <Text style={Styles.headerTitle}>Home</Text>
@@ -82,8 +56,7 @@ function Home({navigation}) {
               </TouchableOpacity>  
             </View>
           </View>
-        </>
-        
+        </>        
         }
         <StatusBar />
     </View>
